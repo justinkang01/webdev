@@ -8,9 +8,9 @@ type Prop = {
 
 const Playlist = ({title, artist}: Prop) => {
   const [songs, addSong] = useState([]);
-  // const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
-  //   const song = event.currentTarget.value;
-  //   addSong(songs.append(song))
+  const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
+    const song = event.currentTarget.value;
+    addSong([...songs] song)
 
 
   return(
