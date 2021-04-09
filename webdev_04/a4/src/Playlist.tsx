@@ -9,32 +9,31 @@ type SongInfo = {
 const Playlist = () => {
   const [songs, addSong] = useState<SongInfo[]>([]);
 
-  const handleChange = (event) => {
-    { [event.target.name] : event.target.value };
+  let temp = { title: "", artist: "" };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    if (event.target.name === "title") {
+      temp.title = event.target.value;
+    } else if (event.target.name === "artist") {
+      temp.artist = event.target.value;
+    }
   };
 
   const handleSubmit = () => {
-    addSong([...songs, song]);
+    addSong([...songs, temp]);
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit}>
         <label>
           Enter Song title:
-          <input
-            type="text"
-            name="title"
-            onChange={handleChange}
-          />
+          <input type="text" name="title" onChange={handleChange} />
         </label>
         <label>
           Enter Song Artist:
-          <input
-            type="text"
-            name="artist"
-            onChange={handleChange}
-          />
+          <input type="text" name="artist" onChange={handleChange} />
         </label>
         <button>Add song to playlist</button>
       </form>
@@ -43,7 +42,7 @@ const Playlist = () => {
           <Song key={song.title} {...song} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
